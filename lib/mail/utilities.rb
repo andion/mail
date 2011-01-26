@@ -41,17 +41,9 @@ module Mail
       token_safe?( str ) ? str : dquote(str)
     end
 
-    # Wraps supplied string in double quotes unless it is already wrapped.
-    # 
-    # Additionally will escape any double quotation marks in the string with a single
-    # backslash in front of the '"' character.
+    # MODIFIED TO CHECK ERRORS
     def dquote( str )
-      match = str.match(/^"(.*)?"$/)
-      str = match[1] if match
-      # First remove all escaped double quotes:
-      str = str.gsub(/\\"/, '"')
-      # Then wrap and re-escape all double quotes
-      '"' + str.gsub(/["]/n) {|s| '\\' + s } + '"'
+      str
     end
     
     # Unwraps supplied string from inside double quotes.
